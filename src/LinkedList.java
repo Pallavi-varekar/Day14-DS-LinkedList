@@ -1,18 +1,18 @@
-public class LinkedList {
-    public static Node head;
+public class LinkedList <T>{
+    public  Node head;
     public Node tail;
 
-    static class Node {
-        int data;
+    class Node {
+        T data;
         Node next;
 
-        Node(int data) {
+        Node(T data) {
             this.data = data;
             this.next = null;
         }
     }
 
-    public void add(int data) {
+    public void add(T data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -29,7 +29,17 @@ public class LinkedList {
         if (head == null) {
             System.out.println("The list is empty");
         }
-        head = head.next;
+        if (head.next == null) {
+            head = null;
+        }
+        Node secondLast = head;
+        Node lastNode = head.next;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+            secondLast = secondLast.next;
+        }
+        secondLast.next = null;
+
     }
 
     public void printlist() {
@@ -41,19 +51,17 @@ public class LinkedList {
             System.out.println(currnode.data + " ");
             currnode = currnode.next;
         }
-        System.out.println("null");
     }
 
     public static void main(String[] args) {
-
         LinkedList l1 = new LinkedList();
         l1.add(56);
         l1.add(30);
         l1.add(70);
         l1.delete();
         l1.printlist();
-    }
-    }
+    }}
+
 
 
 
