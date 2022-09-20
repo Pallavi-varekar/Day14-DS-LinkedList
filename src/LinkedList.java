@@ -11,37 +11,39 @@ public class LinkedList {
             this.next = null;
         }
     }
-    //add element in linkedlist
-    public void add(int data) {
+    public void append(int data) {
         Node newNode = new Node(data);
 
         if (head == null) {
             head = newNode;
-            tail = newNode;
-        } else {
-            newNode.next = head;
-            head = newNode;
+            return;
         }
+        Node currnode = head;
+        while (currnode.next != null) {
+            currnode = currnode.next;
+        }
+        currnode.next = newNode;
     }
+    public void printlist() {
 
-    public void Printlist() {
-        Node current = head;
         if (head == null) {
             System.out.println("List is empty");
         }
-        while (current != null) {
-            System.out.println(current.data + " ");
-            current = current.next;
+        Node currnode = head;
+        while (currnode != null) {
+            System.out.println(currnode.data + " ");
+            currnode = currnode.next;
         }
+        System.out.println("null");
     }
 
     public static void main(String[] args) {
 
         LinkedList l1 = new LinkedList();
-        l1.add(70);
-        l1.add(30);
-        l1.add(56);
-        l1.Printlist();
+        l1.append(56);
+        l1.append(30);
+        l1.append(70);
+        l1.printlist();
     }
 
     }
